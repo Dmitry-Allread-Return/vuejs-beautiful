@@ -1,0 +1,18 @@
+name: vuejsbeautiful
+recipe: laravel
+config:
+  webroot: public
+  php: '8.1'
+  composer_version: '2.3.5'
+  via: nginx
+  database: mysql:8.0
+  xdebug: true
+services:
+  node:
+    type: node:16
+    command: npm start
+tooling:
+  npm:
+    service: node
+  node:
+    service: node
