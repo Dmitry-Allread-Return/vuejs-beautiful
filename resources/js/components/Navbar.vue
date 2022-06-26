@@ -16,6 +16,24 @@
             <li class="nav-item">
               <router-link class="nav-link" :class=" $route.path === '/profile' ? 'active' : '' " to="/profile">Profile</router-link>
             </li>
+
+            <li class="nav-item dropdown ms-5">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user.name }}
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" :href="this.href + 'logout'"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" :action="this.href + 'logout'" method="POST" class="d-none">
+                      <input type="hidden" name="_token" :value="csrf">
+                    </form>
+                </div>
+            </li>
         </ul>
         </div>
     </div>
@@ -24,7 +42,16 @@
 
 <script>
 export default {
-
+  props: {
+    user: Object
+  },
+  data: () => ({
+    href: window.location.href,
+    csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+  }),
+  created() {
+    console.log(this.csrf)
+  }
 }
 </script>
 

@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\MainController::class, 'index'])->name('main');
-
+Route::get('/{any}', [App\Http\Controllers\MainController::class, 'index'])->where('any', '.*');

@@ -1,6 +1,6 @@
 <template>
   <div id="app_from_vue">
-    <Navbar/>
+    <Navbar :user="this.user"/>
     <div class="container">
       <router-view v-slot="{ Component }">
         <transition name="fade">
@@ -16,9 +16,14 @@ import Navbar from './components/Navbar'
 
 export default {
   components: {Navbar},
-  data: () => ({
-    
-  }),
+  props: {
+    user: Object,
+  },
+  data() {
+    return {
+      test: 'tests'
+    }
+  },
   mounted() {
   }
 }
